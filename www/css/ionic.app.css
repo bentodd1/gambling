@@ -16,10 +16,10 @@ $royal:                           #886aea !default;
 $dark:                            #444 !default;
 */
 .item[disabled] {
-  color: #7A8288; }
+  color: #2c3e50; }
 
 .item-input textarea {
-  background: transparent; }
+  }
 
 /*!
   Ionicons, v2.0.1
@@ -3340,7 +3340,7 @@ body,
   overflow: hidden;
   margin: 0;
   padding: 0;
-  color: #C8C8C8;
+  color: #2c3e50;
   word-wrap: break-word;
   font-size: 14px;
   font-family: -apple-system;
@@ -3769,7 +3769,7 @@ a.subdued {
     padding: 1px;
     width: 100%;
     border-radius: 0;
-    border-color: #d1d3d6;
+    border-color: #2c3e50;
     background-color: transparent;
     color: #007aff;
     font-size: 21px; }
@@ -3783,7 +3783,7 @@ a.subdued {
     box-shadow: none;
     border-color: #d1d3d6;
     color: #007aff;
-    background: #e4e5e7; }
+    background: #2c3e50; }
 
 .action-sheet-has-icons .icon {
   position: absolute;
@@ -3806,7 +3806,7 @@ a.subdued {
     border-width: 0; }
 
 .action-sheet-options {
-  background: #f1f2f3; }
+  background: #2c3e50; }
 
 .action-sheet-cancel .button {
   font-weight: 500; }
@@ -3892,7 +3892,7 @@ a.subdued {
   border-style: solid;
   border-top: 1px solid transparent;
   border-bottom: 1px solid rgba(0, 0, 0, 0.6);
-  background-color: #c8c8c8;
+  background-color: #2c3e50;
   /* border-width: 1px will actually create 2 device pixels on retina */
   /* this nifty trick sets an actual 1px border on hi-res displays */
   background-size: 0; }
@@ -7373,7 +7373,9 @@ legend {
     color: #3A3F44;
     font-size: 1.07143; }
 
-label,
+ion-label {
+  color: rgba(0, 0, 0, 0.6);
+}
 input,
 button,
 select,
@@ -8295,7 +8297,7 @@ input:checked + .checkbox-icon:after {
     background: #3A3F44;
     color: #fff; }
   .item-select.item-stable:after, .item-select.item-stable .input-label {
-    color: rgba(0, 0, 0, 0.6); }
+    color: #2c3e50; }
   .item-select.item-positive select {
     background: #387ef5;
     color: #fff; }

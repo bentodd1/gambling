@@ -1,27 +1,46 @@
 <template>
-  <div class="hello">
+  <page-container> >
     <ion-header>
       <ion-toolbar>
-        <ion-title>{{this.$props.League}}</ion-title>
+        <ion-title>{{this.$props.League.name}}</ion-title>
       </ion-toolbar>
     </ion-header>
+     <!-- <ion-content
+    :scrollEvents="true"
+    @ionScrollStart="logScrollStart()"
+    @ionScroll="logScrolling($event)"
+    @ionScrollEnd="logScrollEnd()"> -->
+ <ion-navbar color="dark">
     <ion-list>
-
+      <ion-item>
+      <ion-col>Game</ion-col>
+      <ion-col>Date</ion-col>
+      <ion-col>Spread</ion-col>
+      <ion-col>Over Under</ion-col>
+      </ion-item>
       <ion-item v-for="game in this.list" :key="game.id" >
-        <ion-label>{{game.id }}</ion-label>
-        <ion-label>{{game.description}}</ion-label>
-           <ion-list>
-               <ion-item v-for="line in game.lines" :key="line.id" >
-                   <ion-label>{{line.description}}</ion-label>
-                    <ion-item v-for="bet in line.bets" :key="bet.id" @click="handleBet(bet.shortDesc)" >
-                        <ion-label>{{bet.shortDesc}}</ion-label>
-                    </ion-item>
-                </ion-item>
-            </ion-list>
+        <ion-col>{{game.home_team}} vs {{game.visiting_team}}</ion-col>
+        <ion-col>{{game.game_time}}</ion-col>
+        <ion-col>
+            <ion-col  @click="handleBet(game.betting_scenarios[0].value)" >
+               <button ion-button>{{game.betting_scenarios[0].value}}</button>
+            </ion-col>
+            <ion-col  @click="handleBet(game.betting_scenarios[1].value)" >
+                <button ion-button>{{game.betting_scenarios[1].value}}</button>
+            </ion-col>
+        </ion-col>
+        <ion-col >
+            <ion-col  @click="handleBet(game.betting_scenarios[2].value)" >
+                <button ion-button>{{game.betting_scenarios[2].value}}</button>
+            </ion-col>
+            <ion-col  @click="handleBet(game.betting_scenarios[3].value)" >
+                <button ion-button>{{game.betting_scenarios[3].value}}</button>
+            </ion-col>
+          </ion-col>
       </ion-item>
     </ion-list>
-
-  </div>
+   </ion-navbar>
+ </page-container>
 </template>
 <script>
 import axios from 'axios';
@@ -29,22 +48,27 @@ import axios from 'axios';
 export default {
   name: 'LeagueList',
 
-  props: {League:String}
+  props: {League:{}}
   ,
   components:{
   },
   mounted() {
+    this.getGameList(),
+    this.League = this.$props.League
     /*axios.get('https://www.reddit.com/r/aww.json?raw_json=1')
       .then(response => {
         this.posts = response.data.data.children
       }) */
+
       console.log(this.$props);
   },
   data() {
     return {
+      League:{},
       list: [{
           "id": 1,
           "description": "Lions vs bears",
+          "date": "1/1/2018",
           "lines": [{
               "id": 1,
               "description": "Point Spread",
@@ -79,6 +103,7 @@ export default {
       },{
           "id": 2,
           "description": "Broncos vs Chargers",
+           "date": "1/1/2018",
           "lines": [{
               "id": 3,
               "description": "Point Spread",
@@ -125,7 +150,53 @@ export default {
           buttons: ['OK'],
         })
         .then(a => a.present())
-      }
+      },
+      async getGameList() {
+      const url = `http://localhost:3000/games?leagues_id=`+this.$props.League.id
+      axios.get(url,{ crossdomain: true })
+        .then((response) => {
+
+            this.list = response.data;
+            console.log(response.data)
+        })
+    }
   }
 }
 </script>
+<style>
+:root {
+
+  --ion-background-color: #708090;
+  --ion-font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Roboto", sans-serif;
+
+}
+ion-title {
+  color: 	#00BFFF;
+}
+ionic-body {
+   background-color: 	#708090;
+}
+ion-label {
+  background-color: 	#708090;
+
+  color: 	#00BFFF;
+}
+button{
+  border: solid;
+  background-color: 	#708090;
+  font-size: 16px;
+   width: 140px;
+  color: 	#00BFFF;
+}
+ion-item,item-divider{
+background-color: 	#708090;
+color: 	#00BFFF;
+
+}
+ion-list{
+  background-color: 	#708090;
+}
+div {
+  background-color: 	#708090;
+}
+</style>
