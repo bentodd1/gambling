@@ -2,7 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import LeagueList from './components/LeagueList.vue';
 
-Vue.use(Router)
+Vue.use(Router);
 
 export default new Router({
   mode: 'history',
@@ -11,7 +11,7 @@ export default new Router({
     {
       path: '/',
       name: 'LeagueList',
-      component: LeagueList
+      component: LeagueList,
     },
     {
       path: '/League',
@@ -20,7 +20,7 @@ export default new Router({
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import(/* webpackChunkName: "about" */ './components/League.vue'),
-      props: true
-    }
+      props: true,
+    },
   ]
 })

@@ -6,7 +6,7 @@
       </ion-toolbar>
     </ion-header>
     <ion-list>
-      <ion-item v-for="League in this.list" @click="handleClick(League)">
+      <ion-item v-for="League in this.list" :key="League.id" @click="handleClick(League)">
         <ion-label>{{League.name }}</ion-label>
       </ion-item>
     </ion-list>
@@ -51,6 +51,11 @@ export default {
       console.log(League)
       this.$router.push({ name: 'League', params:{League:  League }})
     }
+  },
+  computed: {
+      leagueList(){
+          return this.gameData.home_team;
+      },
   }
 }
 </script>

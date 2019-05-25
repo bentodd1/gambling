@@ -1,5 +1,8 @@
 <template>
-  <page-container> >
+
+<div>
+<!--<ion-content
+    :scrollEvents="true"> -->
     <ion-header>
       <ion-toolbar>
         <ion-title>{{this.$props.League.name}}</ion-title>
@@ -10,40 +13,27 @@
     @ionScrollStart="logScrollStart()"
     @ionScroll="logScrolling($event)"
     @ionScrollEnd="logScrollEnd()"> -->
- <ion-navbar color="dark">
+ <!--<ion-content
+    :scrollEvents="true"
+   -->
     <ion-list>
-      <ion-item>
-      <ion-col>Game</ion-col>
-      <ion-col>Date</ion-col>
-      <ion-col>Spread</ion-col>
-      <ion-col>Over Under</ion-col>
-      </ion-item>
-      <ion-item v-for="game in this.list" :key="game.id" >
-        <ion-col>{{game.home_team}} vs {{game.visiting_team}}</ion-col>
-        <ion-col>{{game.game_time}}</ion-col>
-        <ion-col>
-            <ion-col  @click="handleBet(game.betting_scenarios[0].value)" >
-               <button ion-button>{{game.betting_scenarios[0].value}}</button>
-            </ion-col>
-            <ion-col  @click="handleBet(game.betting_scenarios[1].value)" >
-                <button ion-button>{{game.betting_scenarios[1].value}}</button>
-            </ion-col>
-        </ion-col>
-        <ion-col >
-            <ion-col  @click="handleBet(game.betting_scenarios[2].value)" >
-                <button ion-button>{{game.betting_scenarios[2].value}}</button>
-            </ion-col>
-            <ion-col  @click="handleBet(game.betting_scenarios[3].value)" >
-                <button ion-button>{{game.betting_scenarios[3].value}}</button>
-            </ion-col>
-          </ion-col>
-      </ion-item>
+     <!-- <ion-item>
+        <ion-col>Game</ion-col>
+        <ion-col>Date</ion-col>
+        <ion-col>Spread</ion-col>
+        <ion-col>Over Under</ion-col>
+      </ion-item> -->
+      <game v-for="game in this.list" :key="game.id" :gameData="game"></game>
     </ion-list>
-   </ion-navbar>
- </page-container>
+
+   </div>
+
+   <!-- </ion-content> -->
+
 </template>
 <script>
 import axios from 'axios';
+import game from './Game';
 
 export default {
   name: 'LeagueList',
@@ -51,6 +41,7 @@ export default {
   props: {League:{}}
   ,
   components:{
+    game
   },
   mounted() {
     this.getGameList(),
@@ -164,6 +155,7 @@ export default {
 }
 </script>
 <style>
+
 :root {
 
   --ion-background-color: #708090;

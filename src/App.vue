@@ -36,8 +36,7 @@ export default {
 </script>
 
 <style>
-<style>
-:root {
+/*:root {
 
   --ion-background-color: #708090;
   --ion-font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Roboto", sans-serif;
@@ -71,6 +70,6 @@ ion-list{
 }
 div {
   background-color: 	#708090;
-}
+} */
 </style>
-</style>
+
